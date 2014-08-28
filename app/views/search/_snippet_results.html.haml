@@ -6,13 +6,13 @@
           %i.icon-book
           Titles and Filenames
           .pull-right
-            = @search_results.issues_count
+            = @search_results.snippet_titles_count
       %li{class: ("active" if @scope == 'snippet_blobs')}
         = link_to search_filter_path(scope: 'snippet_blobs') do
           %i.icon-code
           Code
           .pull-right
-            = @search_results.blobs_count
+            = @search_results.snippet_blobs_count
 
   .col-sm-9
     .search_results
