@@ -6,7 +6,12 @@ class SearchController < ApplicationController
     @group = Group.find_by(id: params[:group_id]) if params[:group_id].present?
     @scope = params[:scope]
 
-    @search_results = if @project
+    @search_results = if params[:snippets].present?
+                        unless %w(blobs titles).include?(@scope)
+                          @scope = 'blobs'
+                        end
+                        Search::SnippetService.new(current_user, params).execute
+                      elsif @project
                         return access_denied! unless can?(current_user, :download_code, @project)
 
                         unless %w(blobs notes issues merge_requests).include?(@scope)

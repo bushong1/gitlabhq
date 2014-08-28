@@ -1,0 +1,24 @@
+.row
+  .col-sm-3
+    %ul.nav.nav-pills.nav-stacked.search-filter
+      %li{class: ("active" if @scope == 'titles')}
+        = link_to search_filter_path(scope: 'titles') do
+          %i.icon-book
+          Titles and Filenames
+          .pull-right
+            = @search_results.issues_count
+      %li{class: ("active" if @scope == 'blobs')}
+        = link_to search_filter_path(scope: 'blobs') do
+          %i.icon-code
+          Code
+          .pull-right
+            = @search_results.blobs_count
+
+  .col-sm-9
+    .search_results
+      - if @search_results.empty?
+        = render partial: "search/results/empty", locals: { message: "We couldn't find any matching results" }
+
+      %ul.bordered-list.top-list
+        = render partial: "search/results/#{@scope.singularize}", collection: @objects
+      = paginate @objects, theme: 'gitlab'
