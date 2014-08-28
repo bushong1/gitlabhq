@@ -7,8 +7,8 @@ class SearchController < ApplicationController
     @scope = params[:scope]
 
     @search_results = if params[:snippets].present?
-                        unless %w(blobs titles).include?(@scope)
-                          @scope = 'blobs'
+                        unless %w(snippet_blobs snippet_titles).include?(@scope)
+                          @scope = 'snippet_blobs'
                         end
                         Search::SnippetService.new(current_user, params).execute
                       elsif @project

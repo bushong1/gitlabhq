@@ -9,10 +9,10 @@ module Gitlab
 
     def objects(scope, page = nil)
       case scope
-      when 'titles'
+      when 'snippet_titles'
         notes.page(page).per(per_page)
         Kaminari.paginate_array(snippet_titles).page(page).per(per_page)
-      when 'blobs'
+      when 'snippet_blobs'
         Kaminari.paginate_array(snippet_blobs).page(page).per(per_page)
       else
         super
@@ -20,15 +20,15 @@ module Gitlab
     end
 
     def total_count
-      @total_count ||= titles_count + blobs_count
+      @total_count ||= snippet_titles_count + snippet_blobs_count
     end
 
-    def titles_count
-      @titles_count ||= snippet_titles.count
+    def snippet_titles_count
+      @snippet_titles_count ||= snippet_titles.count
     end
 
-    def blobs_count
-      @blobs_count ||= snippet_blobs.count
+    def snippet_blobs_count
+      @snippet_blobs_count ||= snippet_blobs.count
     end
 
     private
@@ -46,7 +46,7 @@ module Gitlab
     end
 
     def default_scope
-      'titles'
+      'snippet_blobs'
     end
 
     def bounded_line_numbers(line, min, max, surrounding_lines)
