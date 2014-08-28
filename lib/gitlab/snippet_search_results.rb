@@ -11,9 +11,9 @@ module Gitlab
       case scope
       when 'titles'
         notes.page(page).per(per_page)
-        Kaminari.paginate_array(snippets_titles).page(page).per(per_page)
+        Kaminari.paginate_array(snippet_titles).page(page).per(per_page)
       when 'blobs'
-        Kaminari.paginate_array(snippets_blobs).page(page).per(per_page)
+        Kaminari.paginate_array(snippet_blobs).page(page).per(per_page)
       else
         super
       end
