@@ -50,7 +50,7 @@
                       = i
                   - unless snippet == snippet_blob[:snippet_chunks].last
                     %a
-                      = ".."
+                      = " "
             .highlight.term
               %pre
                 %code
@@ -61,4 +61,4 @@
                       .file-content.code
                         .nothing-here-block Empty file
                     - unless snippet == snippet_blob[:snippet_chunks].last
-                      = "..."
+                      = "\n...\n"
