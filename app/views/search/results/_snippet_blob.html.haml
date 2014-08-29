@@ -49,7 +49,7 @@
                       %i.icon-link
                       = i
                   - unless snippet == snippet_blob[:snippet_chunks].last
-                    = ""
+                    %br
             .highlight.term
               %pre
                 - snippet_blob[:snippet_chunks].each do |snippet|
@@ -60,4 +60,5 @@
                     .file-content.code
                       .nothing-here-block Empty file
                   - unless snippet == snippet_blob[:snippet_chunks].last
-                    = "..."
+                    %code
+                      = "..."
