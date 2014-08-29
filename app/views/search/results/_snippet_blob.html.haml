@@ -50,15 +50,15 @@
                       = i
                   - unless snippet == snippet_blob[:snippet_chunks].last
                     %a
-                      = " "
+                      %pre " "
             .highlight.term
               %pre
                 %code
                   - snippet_blob[:snippet_chunks].each do |snippet|
                     - unless snippet[:data].empty?
+                      - unless snippet == snippet_blob[:snippet_chunks].last
+                        - snippet[:data] += "\n"
                       = snippet[:data]
                     - else
                       .file-content.code
                         .nothing-here-block Empty file
-                    - unless snippet == snippet_blob[:snippet_chunks].last
-                      = "\n...\n"
