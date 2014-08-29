@@ -55,10 +55,7 @@
                 - snippet_blob[:snippet_chunks].each do |snippet|
                   - unless snippet[:data].empty?
                     %code
-                      = snippet[:data].chomp.chomp
+                      = snippet[:data]
                   - else
                     .file-content.code
                       .nothing-here-block Empty file
-                  - unless snippet == snippet_blob[:snippet_chunks].last
-                    %code
-                      = "..."
