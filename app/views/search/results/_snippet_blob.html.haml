@@ -53,10 +53,12 @@
                       = ".."
             .highlight.term
               %pre
-                - snippet_blob[:snippet_chunks].each do |snippet|
-                  - unless snippet[:data].empty?
-                    %code
+                %code
+                  - snippet_blob[:snippet_chunks].each do |snippet|
+                    - unless snippet[:data].empty?
                       = snippet[:data]
-                  - else
-                    .file-content.code
-                      .nothing-here-block Empty file
+                    - else
+                      .file-content.code
+                        .nothing-here-block Empty file
+                    - unless snippet == snippet_blob[:snippet_chunks].last
+                      = "..."
