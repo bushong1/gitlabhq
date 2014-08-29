@@ -4,7 +4,7 @@ module Gitlab
 
     def initialize(limit_snippet_ids, query)
       @limit_snippet_ids = limit_snippet_ids
-      @query = Shellwords.shellescape(query) if query.present?
+      @query = query
     end
 
     def objects(scope, page = nil)

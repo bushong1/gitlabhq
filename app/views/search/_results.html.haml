@@ -1,6 +1,6 @@
 %h4
   #{@search_results.total_count} results found
-  - unless params[:snippets]
+  - unless params[:snippets].eql? 'true'
     - if @project
       for #{link_to @project.name_with_namespace, @project}
     - elsif @group
@@ -10,7 +10,7 @@
 
 - if @project
   = render "project_results"
-- elsif params[:snippets]
+- elsif params[:snippets].eql? 'true'
   = render "snippet_results"
 - else
   = render "global_results"

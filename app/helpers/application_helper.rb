@@ -176,10 +176,10 @@ module ApplicationHelper
   end
 
   def search_placeholder
-    if @snippet || @snippets || (params && params[:snippets])
-      'Search snippets'
-    elsif @project && @project.persisted?
+    if @project && @project.persisted?
       "Search in this project"
+    elsif @snippet || @snippets || (params && params[:snippets] == 'true')
+      'Search snippets'
     elsif @group && @group.persisted?
       "Search in this group"
     else
