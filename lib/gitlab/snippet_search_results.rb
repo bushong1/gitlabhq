@@ -63,9 +63,8 @@ module Gitlab
     # surrounding code.
     #
     # @returns Array, unique and sorted.
-    def matching_lines(snippet)
+    def matching_lines(lined_content)
       used_lines = []
-      lined_content = snippet.content.split("\n")
       lined_content.each_with_index do |line, line_number|
         used_lines.concat bounded_line_numbers(
           line_number,
@@ -82,7 +81,8 @@ module Gitlab
     #
     # @returns a hash with {snippet_object, snippet_chunks:{data,start_line}}
     def chunk_snippet(snippet)
-      used_lines = matching_lines(snippet)
+      lined_content = snippet.content.split("\n")
+      used_lines = matching_lines(lined_content)
 
       snippet_chunk = []
       snippet_chunks = []
